@@ -1,48 +1,33 @@
-# MODIFY ME TO IMPLEMENT YOUR SOLUTION
-# TO PROBLEM 2: Recursive Binary Search
-#
-# NAME:        Nicholas Ngobi
-# ASSIGNMENT:   Project 4: Sorting & Searching
-
-# Write a recursive function `search` that
-# takes an ordered array of numbers as a parameter
-# and a number to search for and returns the index
-# of the number in the array using binary, or -1 otherwise. For
-# full credit, the search should be implemented using
-# recursion, rather than a loop.
-
-#high=None if high is not given when calling the function, then it defaults to none.
-# In the function body if hign is None, it is set to the last index of the array.(len(array)-1) and this ensures the initial search
-#search space covers the entire array. low =0 if low is not provided when calling the function, it defaults to 0 and this means that by default the initial search space starts
-# starts from the beginning of the array.
-# def binary_search(array, n , low=0,high=None):
-#   if high is None:              # if high is not provided, set it to the last index of the array
-#      high = len(array)-1        # high is set to the last index of the array
-#   if low <= high:               #check if the search space is not empty
-#      mid = (high + low ) // 2   #Calculate the middle index of the current search space.
-#      if array[mid] == n: 
-#          return mid
-#      elif array[mid] < n:
-#         low  = mid +1
-#      else: 
-#         high  = mid -1
 def binary_search(array, target):
-    low  = 0
-    high = len(array) - 1
-    while low <= high:
-        mid = (high + low) // 2
-        if array[mid]  == target:
-            return mid
-        elif array[mid]  <  target:
-            low =  mid  +  1
-        else:
-            high = mid  -  1
-    return -1
-def main():
-        
-        array = [-1, 1, 3, 5, 7, 9,10]
-        #result= binary_search(array,1)
-        print("element is present at index",binary_search(array, 9) )
-    
+    """
+    Perform binary search to find the index of the target element in the array.
 
-main()
+    Args:
+    - array: A sorted list of elements to search in.
+    - target: The element to search for.
+
+    Returns:
+    - The index of the target element if found, otherwise returns -1.
+    """
+
+    low = 0                          # Set the low index to the beginning of the array.
+    high = len(array) - 1            # Set the high index to the end of the array.
+    
+    # Continue searching until the low index is less than or equal to the high index.
+    while low <= high:
+        mid = (high + low) // 2      # Calculate the middle index of the current search space.
+        if array[mid] == target:     # If the middle element is the target, return its index.
+            return mid
+        elif array[mid] < target:    # If the middle element is less than the target, search the right half.
+            low = mid + 1
+        else:                        # If the middle element is greater than the target, search the left half.
+            high = mid - 1
+    
+    return -1  # Return -1 if the target element is not found in the array.
+
+def main():
+    array = [-1, 1, 3, 5, 7, 9, 10]
+    print("Element is present at index:", binary_search(array, 9))
+
+if __name__ == "__main__":
+    main()
